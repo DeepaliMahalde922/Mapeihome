@@ -5,7 +5,7 @@ import {
   ScrollView,
   Image,
   StyleSheet,
-  TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback 
+  TouchableHighlight, TouchableOpacity, TouchableNativeHomeback, TouchableWithoutHomeback 
 } from 'react-native';
 
 import logo from './assets/images/ardex_logo.png';
@@ -20,10 +20,10 @@ import wasserwaage from './assets/images/wasserwaage.png';
 
 import { List, ListItem } from 'react-native-elements';
 
-class Feed extends Component {
+class Home extends Component {
 
   onPressProduct = () => {
-    this.props.navigation.navigate('ProductDetail');
+    this.props.navigation.navigate('ProductCat');
   };
   
   render() {
@@ -112,7 +112,7 @@ class Feed extends Component {
   }
 }
 
-export default Feed;
+export default Home;
 
 
 

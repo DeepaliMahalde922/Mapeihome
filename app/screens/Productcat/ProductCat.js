@@ -5,9 +5,10 @@ import {
   ScrollView,
   TouchableHighlight
 } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import axios from 'axios';
 
-class ProductDetail extends Component {
+class ProductCat extends Component {
 
     constructor(){
         super();
@@ -42,21 +43,30 @@ class ProductDetail extends Component {
 
         if(!this.state.data) return  <Text>Loading1...</Text>
         let articles = this.state.data;
-        let productcatData = articles.map((key, value) => {
-            return(     
-                <TouchableHighlight onPress={() => this._onPressButton(key.Name)} key={key.Name}>
-                    <View><Text> {key.Name}</Text></View>
-                </TouchableHighlight>
+        let productcatData = articles.map((item, index) => {
+            return(
+                <ListItem
+                    key={index}
+                    roundAvatar
+                    avatar={{ uri: item.Image }}
+                    title={item.Name}
+                    onPress={() => this._onPressButton(item.Name)}
+                />
             )
         });
         
         return (
             <View>
-                {productcatData}
+                <View><Text>Product Categories</Text></View>
+                <ScrollView>
+                    <List>
+                        <View>{productcatData}</View>
+                    </List>
+                </ScrollView>
             </View>
         );
 
     }
 }
 
-export default ProductDetail;
+export default ProductCat;

@@ -5,6 +5,7 @@ import {
     ScrollView,
     TouchableHighlight
 } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import axios from 'axios';
 
 class ProductSubCat extends Component {
@@ -28,20 +29,20 @@ class ProductSubCat extends Component {
         axios.get('http://www.mapeihome.com/api/ProductCategory/GetActive/', {
             crossdomain: true
         })
-            .then((response) => {
-                return response.data;
-            })
-            .then((responseJson) => {
-                this.setState({ data: responseJson })
-            })
-            .catch((error) => {
-                //alert(error.message);
-            });
+        .then((response) => {
+            return response.data;
+        })
+        .then((responseJson) => {
+            this.setState({ data: responseJson })
+        })
+        .catch((error) => {
+            //alert(error.message);
+        });
     }
 
 
     _onPressButton = (value) => {
-        this.props.navigation.navigate('ProductDes', {subcat: value});
+        this.props.navigation.navigate('ProductList', {subcat: value});
     }
 
     render() {
@@ -50,22 +51,32 @@ class ProductSubCat extends Component {
         let articles = this.state.data;
         let maincatdata = this.state.maincat;
 
-        let productsubcatData = articles.map((key, value) => (
-            <View key={value}>
-                {key.Name === maincatdata && (
+        let productsubcatData = articles.map((item, index) => (
+            <View key={index}>
+                {item.Name === maincatdata && (
                     <View>
                         <View>
-                            <Text>{key.Name}</Text>
+                            <Text>{item.Name}</Text>
                         </View>
-                        {
-                            key.ChildProductCategories.map((key1, value1) => (
-                                <TouchableHighlight onPress={() => this._onPressButton(key1.ProductCategoryID)} key={key1.Name}>
-                                    <View>
-                                        <Text> {key1.Name}</Text>
-                                    </View>
-                                </TouchableHighlight>
-                            ))
-                        }
+
+                        <ScrollView>
+                            <List>
+
+                                {
+                                    item.ChildProductCategories.map((innerItem, innerIndex) => (
+                                        <ListItem
+                                            key={innerIndex}
+                                            roundAvatar
+                                            avatar={{ uri: innerItem.Image }}
+                                            title={innerItem.Name}
+                                            onPress={() => this._onPressButton(innerItem.ProductCategoryID)}
+                                        />
+
+                                    ))
+                                }
+
+                            </List>
+                        </ScrollView>
                     </View>
                 )}
             </View>

@@ -2,47 +2,54 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import Feed from '../screens/Feed';;
-import ProductDetail from '../screens/Productcat/ProductDetail';
+import Home from '../screens/Home';;
+import ProductCat from '../screens/Productcat/ProductCat';
 import ProductSubCat from '../screens/Productsubcat/ProductSubCat';
-import ProductDes from '../screens/Product/ProductDes';
+import ProductList from '../screens/Product/ProductList';
+import ProductDetail from '../screens/Product/ProductDetail';
 
-export const FeedStack = StackNavigator({
-  Feed: {
-    screen: Feed,
+export const HomeStack = StackNavigator({
+  Home: {
+    screen: Home,
     navigationOptions: {
       title: '',
     },
   },
-  ProductDetail: {
-    screen: ProductDetail,
+  ProductCat: {
+    screen: ProductCat,
     navigationOptions: ({ navigation }) => ({
-      title: 'ProductDetail',
+      title: 'Products',
     }),
   },
   ProductSubCat: {
     screen: ProductSubCat,
     navigationOptions: ({ navigation }) => ({
-      title: 'ProductSubCat',
+      title: 'Products',
     }),
   },
-  ProductDes: {
-    screen: ProductDes,
+  ProductList: {
+    screen: ProductList,
     navigationOptions: ({ navigation }) => ({
-      title: 'ProductDes',
+      title: 'Products',
+    }),
+  },
+  ProductDetail: {
+    screen: ProductDetail,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Products',
     }),
   },
 });
 
 export const Tabs = TabNavigator({
-  Feed: {
-    screen: FeedStack
+  Home: {
+    screen: HomeStack
   },
 });
 
-export const ProductDetailStack = StackNavigator({
-  ProductDetail: {
-    screen: ProductDetail,
+export const ProductCatStack = StackNavigator({
+  ProductCat: {
+    screen: ProductCat,
   },
 });
 
@@ -52,9 +59,15 @@ export const ProductSubCatStack = StackNavigator({
   },
 });
 
-export const ProductDesStack = StackNavigator({
-  ProductDes: {
-    screen: ProductDes,
+export const ProductListStack = StackNavigator({
+  ProductList: {
+    screen: ProductList,
+  },
+});
+
+export const ProductDetailStack = StackNavigator({
+  ProductDetail: {
+    screen: ProductDetail,
   },
 });
 
@@ -62,14 +75,17 @@ export const Root = StackNavigator({
   Tabs: {
     screen: Tabs,
   },
-  ProductDetail: {
-    screen: ProductDetailStack,
+  ProductCat: {
+    screen: ProductCatStack,
   },
   ProductSubCat: {
     screen: ProductSubCatStack,
   },
-  ProductDes: {
-    screen: ProductDesStack,
+  ProductList: {
+    screen: ProductListStack,
+  },
+  ProductDetail: {
+    screen: ProductDetailStack,
   },
 }, {
   mode: 'modal',
